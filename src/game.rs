@@ -1000,7 +1000,7 @@ impl GameRunner {
             state,
             session,
             skip_frames: 0,
-            waiting_for_network: true,
+            waiting_for_network: false,
         }
     }
 
@@ -1079,6 +1079,10 @@ impl GameRunner {
                     println!("Desync detected");
                 }
             }
+        }
+
+        if self.session.current_state() == SessionState::Synchronizing {
+            self.waiting_for_network = true;
         }
 
         if self.skip_frames > 0 {

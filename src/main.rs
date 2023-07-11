@@ -30,7 +30,7 @@ fn main() {
     let video_subsystem = sdl_context.video().unwrap();
     let game_controller_subsystem = sdl_context.game_controller().unwrap();
     game_controller_subsystem
-        .load_mappings("controllerdb.txt")
+        .load_mappings("assets/controllerdb.txt")
         .unwrap();
 
     let window = video_subsystem
