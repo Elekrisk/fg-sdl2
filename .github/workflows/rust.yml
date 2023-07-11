@@ -10,7 +10,7 @@ env:
   CARGO_TERM_COLOR: always
 
 jobs:
-  build:
+  build-windows:
 
     runs-on: ubuntu-latest
 
@@ -19,4 +19,6 @@ jobs:
     - name: Install Nightly
       run: rustup toolchain install nightly
     - name: Build
-      run: cargo +nightly build --verbose
+      run: cargo +nightly build --target=x86_64-pc-windows-msvc --verbose
+    - name: Package
+      run: ./package.sh windows debug
