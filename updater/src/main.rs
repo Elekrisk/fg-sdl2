@@ -6,7 +6,7 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Serialize, Deserialize)]
 struct Config {
-    hash: String,
+    current_release: String,
     last_check: u64,
     filename: String,
 }
@@ -61,7 +61,7 @@ fn main() {
         .as_str()
         .unwrap();
 
-    if config.hash == sha {
+    if config.current_release == sha {
         println!("No update found.");
         exit!();
     } else {
@@ -116,7 +116,7 @@ fn main() {
 
     std::fs::remove_dir_all("temp").unwrap();
 
-    config.hash = sha.into();
+    config.current_release = sha.into();
     std::fs::write(
         "./config/autoupdate.json",
         &serde_json::to_vec(&config).unwrap(),
