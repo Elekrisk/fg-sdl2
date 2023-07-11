@@ -16,9 +16,16 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - name: Install Nightly
-      run: rustup toolchain install nightly
+    
+    - name: Install latest nightly
+      uses: actions-rs/toolchain@v1
+      with:
+        toolchain: nightly
+        target: x86_64-pc-windows-msvc
+        profile: minimal
+    
     - name: Build
       run: cargo +nightly build --target=x86_64-pc-windows-msvc --verbose
+    
     - name: Package
       run: ./package.sh windows debug
