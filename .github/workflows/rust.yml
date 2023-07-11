@@ -21,8 +21,11 @@ jobs:
         toolchain: nightly
         profile: minimal
     
-    - name: Build
+    - name: Build Game
       run: cargo +nightly build --verbose
+      
+    - name: Build Updater
+      run: cd updater && cargo +nightly build --verbose
     
     - name: Package
       run: ./package.ps1 windows debug
