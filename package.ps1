@@ -42,7 +42,7 @@ if ( $hash -eq "" )
 }
 
 $exe = "target/$target/$file"
-$updater_exe = "updater/target/$target/updater"
+$updater_exe = "updater/target/$target/$updater_file"
 
 $zip_name = "${platform}_${target}_x86_64.zip"
 
