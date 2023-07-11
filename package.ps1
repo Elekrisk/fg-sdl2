@@ -62,7 +62,7 @@ $autoupdate_config = @{
 }
 
 mkdir temp/config
-convertto-json $autoupdate_config > temp/config/autoupdate_config
+convertto-json $autoupdate_config > temp/config/autoupdate.json
 
 $args = @{
     Path = "./temp/*"
