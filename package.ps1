@@ -3,6 +3,8 @@ param (
     [string]$target = 'debug'
 )
 
+$hash = $env:GITHUB_SHA
+
 if ( $platform -eq 'windows' )
 {
     $file = "fg-sdl2.exe"
@@ -31,6 +33,12 @@ else
     exit
 }
 
+if ( $hash -eq "" )
+{
+    echo "Invalid hash"
+    exit
+}
+
 $exe = "target/$target/$file"
 
 $zip_name = "${platform}_${target}_x86_64.zip"
@@ -42,6 +50,14 @@ if ( $platform -eq 'windows' )
 {
     cp "target/$target/SDL2.dll" temp/
 }
+
+$autoupdate_config = @{
+    "current_release" = $hash
+    "last_check" = 0
+    "filename" = $zip_name
+}
+
+convertto-json $autoupdate_config > temp/config/autoupdate_config
 
 $args = @{
     Path = "./temp/*"
