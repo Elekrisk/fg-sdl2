@@ -5,7 +5,7 @@ use std::collections::HashMap;
 use macros::CharacterStateContainer;
 use sdl2::{render::TextureCreator, video::WindowContext};
 
-use crate::{fixed_point::FixedPoint, input::InputDirection, time::Frame};
+use super::{fixed_point::FixedPoint, input::InputDirection, time::Frame};
 
 use super::{animation::Animation, movelist::Movelist, GameInfo, GameState, PlayerSide};
 

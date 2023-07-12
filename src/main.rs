@@ -2,25 +2,39 @@
 #![feature(int_roundings)]
 #![feature(let_chains)]
 
-mod camera;
-mod fixed_point;
+mod app_context;
+mod asset_manager;
 mod fvec2;
 mod game;
-pub mod input;
-mod time;
+mod gui;
+mod state;
+mod updater;
 
-use std::{collections::HashMap, time::{Duration, Instant}, net::{SocketAddr, SocketAddrV4, Ipv4Addr}};
+use std::{
+    collections::HashMap,
+    net::{Ipv4Addr, SocketAddr, SocketAddrV4},
+    time::{Duration, Instant},
+};
 
+use app_context::AppContext;
+use asset_manager::AssetManager;
 use clap::Parser;
 use game::{PlayerSide, FPS};
-use ggrs::{SessionBuilder, UdpNonBlockingSocket, SessionState};
+use ggrs::{SessionBuilder, SessionState, UdpNonBlockingSocket};
+use libp2p::PeerId;
 use sdl2::{event::Event, keyboard::Keycode, pixels::Color};
 
 use crate::game::{GameInfo, GameRunner, GameState, PlayerType};
 
 #[derive(Parser)]
 struct Opts {
-    player_side: Option<PlayerSide>
+    player_side: Option<PlayerSide>,
+}
+
+fn mai2() {
+    let local_key = libp2p::identity::Keypair::generate_ed25519();
+    let local_peer_id = PeerId::from(local_key.public());
+    println!("Local peer id: {local_peer_id:?}")
 }
 
 fn main() {
@@ -29,9 +43,12 @@ fn main() {
     let sdl_context = sdl2::init().unwrap();
     let video_subsystem = sdl_context.video().unwrap();
     let game_controller_subsystem = sdl_context.game_controller().unwrap();
+    // let ttf_subsystem = sdl2::ttf::init().unwrap();
     game_controller_subsystem
         .load_mappings("assets/controllerdb.txt")
         .unwrap();
+    // let font = ttf_subsystem.load_font("assets/fonts/RobotoSlab-Regular.ttf", 20).unwrap();
+    // app_context.asset_manager.insert("RobotoSlab", font);
 
     let window = video_subsystem
         .window("fighting game", 1280, 720)
@@ -45,8 +62,15 @@ fn main() {
 
     let texture_creator = Box::leak(Box::new(canvas.texture_creator()));
 
+    let mut app_context = AppContext {
+        sdl_context: &sdl_context,
+        video_subsystem: &video_subsystem,
+        game_controller_subsystem: &game_controller_subsystem,
+    };
     let mut game_info = GameInfo::create(texture_creator);
-    let PlayerType::Local { mapping, input } = &mut game_info.player_2 else { unreachable!() };
+    let PlayerType::Local { mapping, input } = &mut game_info.player_2 else {
+        unreachable!()
+    };
     mapping.grab_controller(0);
 
     let game = GameState::new(&game_info);

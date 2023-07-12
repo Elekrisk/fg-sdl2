@@ -1,6 +1,10 @@
 mod animation;
 mod character;
 mod movelist;
+mod camera;
+pub mod fixed_point;
+mod input;
+mod time;
 
 use std::{
     collections::{hash_map::DefaultHasher, HashMap},
@@ -19,13 +23,13 @@ use sdl2::{
     video::{Window, WindowContext},
 };
 
-use crate::{
-    camera::Camera,
-    fixed_point::{self, FixedPoint, Rect, Vec2},
-    fvec2::FVec2,
-    input::{Action, BoxedInput, Input, InputEvent, InputHistory, InputMapping},
-    time::Frame,
-};
+use camera::Camera;
+use fixed_point::{FixedPoint, Rect, Vec2};
+use crate::fvec2::FVec2;
+use input::{Action, BoxedInput, Input, InputEvent, InputHistory, InputMapping};
+use time::Frame;
+
+use crate::state::StateTransition;
 
 use self::{
     animation::Animation,
@@ -613,13 +617,13 @@ impl Player {
         if last_dir != new_dir {
             self.input_history.add(InputEvent {
                 frame,
-                kind: crate::input::InputKind::Direction(last_dir),
+                kind: input::InputKind::Direction(last_dir),
                 pressed: false,
             });
 
             self.input_history.add(InputEvent {
                 frame,
-                kind: crate::input::InputKind::Direction(new_dir),
+                kind: input::InputKind::Direction(new_dir),
                 pressed: true,
             });
         }
@@ -632,7 +636,7 @@ impl Player {
         if last_punch != new_punch {
             self.input_history.add(InputEvent {
                 frame,
-                kind: crate::input::InputKind::Button(crate::input::Button::Punch),
+                kind: input::InputKind::Button(input::Button::Punch),
                 pressed: new_punch,
             });
         }
@@ -640,7 +644,7 @@ impl Player {
         if last_kick != new_kick {
             self.input_history.add(InputEvent {
                 frame,
-                kind: crate::input::InputKind::Button(crate::input::Button::Kick),
+                kind: input::InputKind::Button(input::Button::Kick),
                 pressed: new_kick,
             });
         }
@@ -1135,5 +1139,35 @@ impl GameRunner {
             self.session.poll_remote_clients();
         }
         self.state.render(&self.info, canvas);
+    }
+}
+
+impl crate::state::State for GameRunner {
+    fn on_enter(&mut self, ctx: &mut crate::app_context::AppContext) {
+        todo!()
+    }
+
+    fn on_suspend(&mut self, ctx: &mut crate::app_context::AppContext) {
+        todo!()
+    }
+
+    fn on_resume(&mut self, ctx: &mut crate::app_context::AppContext) {
+        todo!()
+    }
+
+    fn on_exit(&mut self, ctx: &mut crate::app_context::AppContext) {
+        todo!()
+    }
+
+    fn event(&mut self, event: sdl2::event::Event, ctx: &mut crate::app_context::AppContext) {
+        todo!()
+    }
+
+    fn tick(&mut self, ctx: &mut crate::app_context::AppContext) -> StateTransition {
+        todo!()
+    }
+
+    fn render(&mut self, canvas: &mut Canvas<Window>, ctx: &mut crate::app_context::AppContext) {
+        todo!()
     }
 }

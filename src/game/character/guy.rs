@@ -4,9 +4,9 @@ use crate::{
     game::{
         movelist::{InputMatcher, Move, Movelist, StateMatcher, HitEffect, Effect},
         GameInfo, GameState, PlayerSide, Attack,
-    },
-    input::Button,
-    time::Frame, fixed_point::FixedPoint,
+        input::Button,
+        time::Frame, fixed_point::FixedPoint,
+    }
 };
 
 use super::{CharacterSpecificState, CharacterState, IdleState, State};

@@ -1,4 +1,4 @@
-use crate::{
+use super::{
     input::{Button, InputHistory, INPUT_BUFFER},
     time::Frame, fixed_point::FixedPoint,
 };
@@ -60,7 +60,7 @@ impl InputMatcher {
             history
                 .iter(INPUT_BUFFER, frame)
                 .find(|ie| ie.pressed && match ie.kind {
-                    crate::input::InputKind::Button(btn) => btn == button,
+                    super::input::InputKind::Button(btn) => btn == button,
                     _ => false,
                 })
                 .is_some()

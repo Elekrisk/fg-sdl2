@@ -25,6 +25,12 @@ else
     exit
 fi
 
+if [ $HASH = "" ]
+then
+    echo "Invalid hash"
+    exit
+fi
+
 ZIP_NAME="${PLATFORM}_${TARGET}_x86_64.zip"
 
 mkdir temp
@@ -32,8 +38,11 @@ cp -r assets temp/
 cp "$EXE" temp/
 if [ $PLATFORM = "windows" ]
 then
-    cp "target/$TARGET/SDL2.dll" temp/
+    cp "SDL2.dll" temp/
 fi
+
+mkdir temp/config
+echo "{\"current_release\" = \"$HASH\", \"last_check\" = 0, \"filename\" = \"$ZIP_NAME\"}" > temp/config/autoupdate.json
 
 cd temp
 zip -r "$ZIP_NAME" *

@@ -3,7 +3,7 @@ use std::collections::HashMap;
 use bytemuck::{Pod, Zeroable};
 use sdl2::keyboard::Scancode;
 
-use crate::time::Frame;
+use super::time::Frame;
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 pub enum Input {

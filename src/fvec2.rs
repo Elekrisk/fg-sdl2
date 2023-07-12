@@ -1,6 +1,6 @@
 use std::ops::{Add, AddAssign, Div, DivAssign, Mul, MulAssign, Neg, Sub, SubAssign};
 
-use crate::fixed_point::Vec2;
+use crate::game::fixed_point::Vec2;
 
 #[derive(Debug, Clone, Copy, PartialEq)]
 pub struct FVec2 {

@@ -1,6 +1,6 @@
 use std::hash::Hash;
 
-use crate::{fixed_point::FixedPoint, fvec2::FVec2};
+use super::{fixed_point::FixedPoint, super::fvec2::FVec2};
 
 #[derive(Clone)]
 pub struct Camera {

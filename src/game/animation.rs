@@ -6,7 +6,7 @@ use sdl2::{
     video::WindowContext,
 };
 
-use crate::fixed_point::Vec2;
+use super::fixed_point::Vec2;
 
 pub struct Animation {
     pub texture_atlas: Texture<'static>,
