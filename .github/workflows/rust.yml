@@ -28,6 +28,9 @@ jobs:
     - name: Setup SDL2 for Windows
       run: bash ./setup_sdl_windows.sh
 
+    - name: Setup SDL2 for Linux
+      run: sudo apt install libsdl2-dev
+
     - name: Build Windows
       run: RUSTFLAGS='-C link-args=-L.' cargo +nightly build --target=x86_64-pc-windows-gnu --verbose
 
