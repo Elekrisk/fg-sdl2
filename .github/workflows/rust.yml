@@ -29,7 +29,7 @@ jobs:
       run: bash ./setup_sdl_windows.sh
 
     - name: Setup SDL2 for Linux
-      run: sudo apt install libsdl2-dev
+      run: sudo apt install libsdl2-dev libsdl2-ttf-dev
 
     - name: Build Windows
       run: RUSTFLAGS='-C link-args=-L.' cargo +nightly build --target=x86_64-pc-windows-gnu --verbose
