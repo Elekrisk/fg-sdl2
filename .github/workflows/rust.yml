@@ -20,10 +20,10 @@ jobs:
       with:
         toolchain: nightly
         profile: minimal
-        target: x86_64-pc-windows-msvc
+        target: x86_64-pc-windows-gnu
     
     - name: Build Windows
-      run: cargo +nightly build --target=x86_64-pc-windows-msvc --verbose
+      run: cargo +nightly build --target=x86_64-pc-windows-gnu --verbose
 
     - name: Build Linux
       run: cargo +nightly build --verbose
