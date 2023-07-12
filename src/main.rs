@@ -21,7 +21,6 @@ use asset_manager::AssetManager;
 use clap::Parser;
 use game::{PlayerSide, FPS};
 use ggrs::{SessionBuilder, SessionState, UdpNonBlockingSocket};
-use libp2p::PeerId;
 use sdl2::{event::Event, keyboard::Keycode, pixels::Color};
 
 use crate::game::{GameInfo, GameRunner, GameState, PlayerType};
@@ -29,12 +28,6 @@ use crate::game::{GameInfo, GameRunner, GameState, PlayerType};
 #[derive(Parser)]
 struct Opts {
     player_side: Option<PlayerSide>,
-}
-
-fn mai2() {
-    let local_key = libp2p::identity::Keypair::generate_ed25519();
-    let local_peer_id = PeerId::from(local_key.public());
-    println!("Local peer id: {local_peer_id:?}")
 }
 
 fn main() {

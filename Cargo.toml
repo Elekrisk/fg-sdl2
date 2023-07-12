@@ -15,4 +15,3 @@ image = "0.24"
 bytemuck = "1"
 macros = { path = "macros" }
 clap = { version = "4", features = ["derive"] }
-libp2p = { version = "0.52", features = ["tcp", "dns", "async-std", "noise", "yamux", "websocket", "ping", "macros"] }
