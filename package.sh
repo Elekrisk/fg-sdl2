@@ -6,9 +6,11 @@ TARGET=$2
 if [ $PLATFORM = "windows" ]
 then
     FILE="fg-sdl2.exe"
+    TARGET_PREFIX=""
 elif [ $PLATFORM = "linux" ]
 then
     FILE="fg-sdl2"
+    TARGET_PREFIX="x86_64-pc-windows-gnu"
 else
     echo "Invalid platform $PLATFORM"
     exit
@@ -38,7 +40,7 @@ cp -r assets temp/
 cp "$EXE" temp/
 if [ $PLATFORM = "windows" ]
 then
-    cp "SDL2.dll" temp/
+    cp SDL2.dll SDL2_ttf.dll temp/
 fi
 
 mkdir temp/config

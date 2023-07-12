@@ -1,2 +1,6 @@
 /target
 /updater/target
+SDL2.lib
+SDL2.dll
+SDL2_ttf.lib
+SDL2_ttf.dll
