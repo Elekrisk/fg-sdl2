@@ -8,11 +8,11 @@ TARGET=$2
 if [ $PLATFORM = "windows" ]
 then
     FILE="fg-sdl2.exe"
-    TARGET_PREFIX=""
+    TARGET_PREFIX="x86_64-pc-windows-gnu"
 elif [ $PLATFORM = "linux" ]
 then
     FILE="fg-sdl2"
-    TARGET_PREFIX="x86_64-pc-windows-gnu"
+    TARGET_PREFIX=""
 else
     echo "Invalid platform $PLATFORM"
     exit
@@ -20,10 +20,10 @@ fi
 
 if [ $TARGET = "debug" ]
 then
-    EXE="target/debug/$FILE"
+    EXE="target/$TARGET_PREFIX/debug/$FILE"
 elif [ $TARGET = "release" ]
 then
-    EXE="target/release/$FILE"
+    EXE="target/$TARGET_PREFIX/release/$FILE"
 else
     echo "Invalid target $TARGET"
     exit
