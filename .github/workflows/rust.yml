@@ -26,7 +26,7 @@ jobs:
       run: sudo apt install gcc-mingw-w64
     
     - name: Setup SDL2 for Windows
-      run: ./setup_sdl_windows.sh
+      run: bash ./setup_sdl_windows.sh
 
     - name: Build Windows
       run: cargo +nightly build --target=x86_64-pc-windows-gnu --verbose
@@ -35,10 +35,10 @@ jobs:
       run: cargo +nightly build --verbose
     
     - name: Package Windows
-      run: ./package.sh windows debug
+      run: bash ./package.sh windows debug
     
     - name: Package Linux
-      run: ./package.sh linux debug
+      run: bash ./package.sh linux debug
     
     - name: Release
       uses: "marvinpinto/action-automatic-releases@latest"
