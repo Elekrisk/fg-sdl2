@@ -1,5 +1,7 @@
 #/usr/bin/bash
 
+set -e
+
 PLATFORM=$1
 TARGET=$2
 

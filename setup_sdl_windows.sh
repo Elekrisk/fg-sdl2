@@ -1,5 +1,7 @@
 #!/usr/bin/bash
 
+set -e
+
 mkdir temp
 curl -L --output temp/sdl2_windows.zip https://github.com/libsdl-org/SDL/releases/download/release-2.28.1/SDL2-devel-2.28.1-VC.zip
 cd temp
