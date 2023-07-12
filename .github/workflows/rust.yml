@@ -29,7 +29,7 @@ jobs:
       run: bash ./setup_sdl_windows.sh
 
     - name: Build Windows
-      run: cargo +nightly build --target=x86_64-pc-windows-gnu --verbose
+      run: RUSTFLAGS='-C link-args=-L.' cargo +nightly build --target=x86_64-pc-windows-gnu --verbose
 
     - name: Build Linux
       run: cargo +nightly build --verbose
