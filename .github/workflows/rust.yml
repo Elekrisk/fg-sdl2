@@ -23,7 +23,7 @@ jobs:
         target: x86_64-pc-windows-msvc
     
     - name: Build Windows
-      run: cargo +nightly --target=x86_64-pc-windows-msvc build --verbose
+      run: cargo +nightly build --target=x86_64-pc-windows-msvc --verbose
 
     - name: Build Linux
       run: cargo +nightly build --verbose
